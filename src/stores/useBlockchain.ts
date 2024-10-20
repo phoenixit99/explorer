@@ -103,7 +103,8 @@ export const useBlockchain = defineStore('blockchain', {
           },
         ];
       }
-      // compute favorite menu
+      // skip favourite
+      // // compute favorite menu
       const favNavItems: VerticalNavItems = [];
       Object.keys(this.dashboard.favoriteMap).forEach((name) => {
         const ch = this.dashboard.chains[name];
@@ -120,22 +121,22 @@ export const useBlockchain = defineStore('blockchain', {
       return [
         ...currNavItem,
         { heading: 'Ecosystem' } as NavSectionTitle,
-        {
-          title: 'Favorite',
-          children: favNavItems,
-          badgeContent: favNavItems.length,
-          badgeClass: 'bg-primary',
-          i18n: true,
-          icon: { icon: 'mdi-star', size: '22' },
-        } as NavGroup,
-        {
-          title: 'All Blockchains',
-          to: { path: '/' },
-          badgeContent: this.dashboard.length,
-          badgeClass: 'bg-primary',
-          i18n: true,
-          icon: { icon: 'mdi-grid', size: '22' },
-        } as NavLink,
+        // {
+        //   title: 'Favorite',
+        //   children: favNavItems,
+        //   badgeContent: favNavItems.length,
+        //   badgeClass: 'bg-primary',
+        //   i18n: true,
+        //   icon: { icon: 'mdi-star', size: '22' },
+        // } as NavGroup,
+        // {
+        //   title: 'All Blockchains',
+        //   to: { path: '/' },
+        //   badgeContent: this.dashboard.length,
+        //   badgeClass: 'bg-primary',
+        //   i18n: true,
+        //   icon: { icon: 'mdi-grid', size: '22' },
+        // } as NavLink,
       ];
     },
   },

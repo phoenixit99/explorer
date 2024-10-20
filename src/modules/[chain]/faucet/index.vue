@@ -108,7 +108,7 @@ onMounted(() => {
                 {{ chainStore.chainName }} Faucet
             </h1>
         </div>
-        <div class="bg-base-100 my-5 px-4 pt-3 pb-4 rounded shadow">
+        <div class="bg-base-100 dark:bg-[#181D27] my-5 px-4 pt-3 pb-4 rounded shadow">
             <h2 class="card-title">Get Tokens</h2>
             <input type="text" v-model="address" class="mt-4 mb-4 w-full border border-gray-300 rounded-md p-2"
                 :class="{'input-error' : !validAddress}"
@@ -117,9 +117,9 @@ onMounted(() => {
                 Tokens</button>
         </div>
 
-        <AdBanner id="home-banner-ad" unit="banner" />
+        <!-- <AdBanner id="home-banner-ad" unit="banner" /> -->
 
-        <div class="bg-base-100 my-5 px-4 pt-3 pb-4 rounded shadow">
+        <div class="bg-base-100 dark:bg-[#181D27] my-5 px-4 pt-3 pb-4 rounded shadow">
             <h2 class="card-title">Enable Faucet</h2>
             <div class="mt-4">
                 <span class="text-base"> 1. Submit chain configuration</span>
@@ -160,7 +160,7 @@ onMounted(() => {
                 </div>
                 <p class="py-2">
                 <div>
-                    <AdBanner id="popup-ad" unit="popup" />
+                    <!-- <AdBanner id="popup-ad" unit="popup" /> -->
                 </div>
                 </p>
             </div>

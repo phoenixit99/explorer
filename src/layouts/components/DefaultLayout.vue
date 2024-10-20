@@ -71,21 +71,22 @@ const behind = computed(() => {
 dayjs()
 
 </script>
-
+<!-- 181D27 -->
 <template>
-  <div class="bg-gray-100 dark:bg-[#171d30]">
+  <div class="bg-white-100 dark:bg-[#000000]">
 
-    <nav class="w-full z-50 top-0 bg-base-100 border-b border-gray-100 dark:border-gray-700">
+    <nav class="w-full z-50 top-0 bg-base-100 dark:bg-[#181D27] border-b border-gray-100 dark:border-gray-700">
       <div class="flex justify-between items-center py-4 px-4">
         <RouterLink to="/" class="flex items-center">
           <img class="w-10 h-10" src="../../assets/logo.svg" alt="Logo" />
           <h1 class="ml-3 text-2xl font-semibold dark:text-white">NodesVault</h1>
         </RouterLink>
-
-        <div class="flex space-x-4">
+<!-- 
+        <div class="flex space-x-4 bg-base-100 dark:bg-[#181D27] ">
           <div v-for="(item, index) in blockchain.computedChainMenu" :key="index" class="flex items-center space-x-4">
+
             <RouterLink v-if="isNavLink(item)" :to="item?.to"
-              class="cursor-pointer rounded-lg px-4 py-2 flex items-center hover:bg-gray-100 dark:hover:bg-[#373f59]">
+              class="cursor-pointer rounded-lg px-4 py-2 flex  bg-base-100 dark:bg-[#181D27]  items-center hover:bg-gray-100 dark:hover:bg-[#373f59]">
               <Icon v-if="item?.icon?.icon" :icon="item?.icon?.icon" class="text-xl mr-2" :class="{
                 'text-yellow-500': item?.title === 'Favorite',
                 'text-blue-500': item?.title !== 'Favorite',
@@ -96,16 +97,14 @@ dayjs()
               </span>
             </RouterLink>
 
-            <!-- Handle Dropdown or Collapsible Sections -->
             <div v-if="isNavGroup(item)" class="relative">
               <button @click="toggleDropdown(index)"
                 class="flex items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-[#373f59]">
                 <Icon v-if="item?.icon?.icon" :icon="item?.icon?.icon" class="text-xl mr-2" />
                 <span class="capitalize text-gray-700 dark:text-gray-200">{{ item?.title }}</span>
               </button>
-              <!-- Dropdown -->
               <div v-if="dropdownOpen === index"
-                class="absolute bg-base-100 border dark:border-gray-700 mt-2 p-2 rounded-lg">
+                class="absolute bg-base-100 dark:bg-[#181D27] border dark:border-gray-700 mt-2 p-2 rounded-lg">
                 <RouterLink v-for="(el, key) in item?.children" :key="key" :to="el.to"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#373f59]">
                   <Icon v-if="!el?.icon?.image" icon="mdi:chevron-right" class="mr-2" />
@@ -115,19 +114,21 @@ dayjs()
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
+
+
       </div>
 
     </nav>
 
-    <div v-for="(item, index) of blockchain.computedChainMenu" :key="index" class="px-2 flex">
+    <div v-for="(item, index) of blockchain.computedChainMenu" :key="index" class="flex">
       <div v-if="isNavGroup(item)" :tabindex="index" class="collapse" :class="{
         'collapse-arrow': index > 0 && item?.children?.length > 0,
         'collapse-open': index === 0 && sidebarOpen,
         'collapse-close': index === 0 && !sidebarOpen,
       }">
         <input v-if="index > 0" type="checkbox" class="cursor-pointer !h-10 block" @click="changeOpen(index)" />
-        <div
+        <!-- <div
           class="collapse-title !py-0 px-4 flex items-center cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
           <Icon v-if="item?.icon?.icon" :icon="item?.icon?.icon" class="text-xl mr-2" :class="{
             'text-yellow-500': item?.title === 'Favorite',
@@ -140,8 +141,8 @@ dayjs()
           <div v-if="item?.badgeContent" class="mr-6 badge badge-sm text-white border-none" :class="item?.badgeClass">
             {{ item?.badgeContent }}
           </div>
-        </div>
-        <div class="collapse-content flex"> <!-- Added "flex" to align horizontally -->
+        </div> -->
+        <div class="collapse-content flex"> 
           <div v-for="(el, key) of item?.children" class="menu bg-base-100 w-full !p-0">
             <RouterLink v-if="isNavLink(el)" @click="sidebarShow = false"
               class="hover:bg-gray-100 dark:hover:bg-[#373f59] rounded cursor-pointer px-3 py-2 flex items-center"
@@ -163,6 +164,7 @@ dayjs()
               </div>
             </RouterLink>
           </div>
+          
           <div v-if="index === 0 && dashboard.networkType === NetworkType.Testnet" class="menu bg-base-100 w-full !p-0">
             <RouterLink
               class="hover:bg-gray-100 dark:hover:bg-[#373f59] rounded cursor-pointer px-3 py-2 flex items-center"
@@ -179,33 +181,11 @@ dayjs()
         </div>
       </div>
     </div>
+
+
     <div class="xl:!ml-20 mr-20 px-3 pt-4">
       <!-- header -->
-
-      <!-- <nav class="text-white">
-    <ul class="flex space-x-6  border-gray-100 dark:border-gray-700 h-6 p-8">
-      <li><router-link to="/">Dashboard</router-link></li>
-      <li><router-link to="/validators">Validators</router-link></li>
-      <li><router-link to="/transactions">Transactions</router-link></li>
-      <li><router-link to="/assets">Assets</router-link></li>
-      <li><router-link to="/gov">Gov</router-link></li>
-      <li><router-link to="/ibc">IBC</router-link></li>
-      <li><router-link to="/contracts">Contracts</router-link></li>
-      <li>
-        <div class="relative inline-block">
-          <button @click="toggleDropdown" class="focus:outline-none">
-            Network <span v-if="dropdownVisible">▲</span><span v-else>▼</span>
-          </button>
-          <ul v-if="dropdownVisible" class="absolute mt-2 bg-gray-800 p-2 rounded shadow-lg">
-            <li class="py-1"><router-link to="/network/1">Network 1</router-link></li>
-            <li class="py-1"><router-link to="/network/2">Network 2</router-link></li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </nav> -->
-
-      <div class="flex items-center py-3 bg-base-100 mb-4 rounded px-4 sticky top-0 z-10">
+      <div class="flex items-center py-3 bg-base-100 dark:bg-[#181D27] mb-4 rounded px-4 sticky top-0 z-10">
         <div class="text-2xl pr-3 cursor-pointer xl:!hidden" @click="sidebarShow = true">
           <Icon icon="mdi-menu" />
         </div>
@@ -246,7 +226,7 @@ dayjs()
 </template>
 <style scoped>
 nav {
-  background-color: #242d41;
+  background-color: #181D27;
 }
 
 ul {

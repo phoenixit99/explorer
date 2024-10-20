@@ -127,7 +127,7 @@ const amount = computed({
 
 <template>
   <div>
-    <div v-if="coinInfo && coinInfo.name" class="bg-base-100 rounded shadow">
+    <div v-if="coinInfo && coinInfo.name" class="bg-base-100 dark:bg-[#181D27] rounded shadow">
       <div class="grid grid-cols-2 md:grid-cols-3 p-4">
         <div class="col-span-2 md:col-span-1">
           <div class="text-xl font-semibold text-main">
@@ -137,7 +137,7 @@ const amount = computed({
           </div>
           <div class="text-xs mt-2">
             {{ $t('index.rank') }}:
-            <div class="badge text-xs badge-error bg-[#fcebea] dark:bg-[#41384d] text-red-400">
+            <div class="badge text-xs badge-error bg-[#fcebea] dark:bg-[#181D27] text-red-400">
               #{{ coinInfo.market_cap_rank }}
             </div>
           </div>
@@ -257,15 +257,14 @@ const amount = computed({
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 md:!grid-cols-3 lg:!grid-cols-6 mt-4">
+    <div class="grid grid-cols-1 gap-4 md:!grid-cols-3 lg:!grid-cols-6 mt-4 shadow-md">
       <div v-for="(item, key) in store.stats" :key="key">
         <CardStatisticsVertical v-bind="item" />
       </div>
     </div>
 
-    <AdBanner id="chain-home-banner-ad" unit="banner" width="970px" height="90px" />
 
-    <div v-if="blockchain.supportModule('governance')" class="bg-base-100 rounded mt-4 shadow">
+    <div v-if="blockchain.supportModule('governance')" class="bg-base-100 dark:bg-[#181D27]  rounded mt-6 shadow-md">
       <div class="px-4 pt-4 pb-2 text-lg font-semibold text-main">
         {{ $t('index.active_proposals') }}
       </div>
@@ -277,7 +276,7 @@ const amount = computed({
       </div>
     </div>
 
-    <div class="bg-base-100 rounded mt-4 shadow">
+    <div class="bg-base-100 dark:bg-[#181D27]  rounded mt-4 shadow-md">
       <div class="flex justify-between px-4 pt-4 pb-2 text-lg font-semibold text-main">
         <span class="truncate" >{{ walletStore.currentAddress || 'Not Connected' }}</span>
         <RouterLink v-if="walletStore.currentAddress"
@@ -372,7 +371,7 @@ const amount = computed({
         </table>
       </div>
 
-      <div class="grid grid-cols-3 gap-4 px-4 pb-6 mt-4">
+      <div class="grid grid-cols-3 gap-4 px-4 pb-6 mt-4 shadow-md">
         <label for="PingTokenConvert" class="btn btn-primary text-white">{{ $t('index.btn_swap') }}</label>
         <label for="send" class="btn !bg-yes !border-yes text-white" @click="dialog.open('send', {}, updateState)">{{ $t('account.btn_send') }}</label>
         <label for="delegate" class="btn !bg-info !border-info text-white"
@@ -385,7 +384,7 @@ const amount = computed({
       </Teleport>
     </div>
 
-    <div class="bg-base-100 rounded mt-4">
+    <div class="bg-base-100 dark:bg-[#181D27]  rounded mt-4 shadow-md">
       <div class="px-4 pt-4 pb-2 text-lg font-semibold text-main">
         {{ $t('index.app_versions') }}
       </div>
@@ -394,7 +393,7 @@ const amount = computed({
       <div class="h-4"></div>
     </div>
 
-    <div v-if="!store.coingeckoId" class="bg-base-100 rounded mt-4">
+    <div v-if="!store.coingeckoId" class="bg-base-100 dark:bg-[#181D27] rounded mt-4 shadow-md">
       <div class="px-4 pt-4 pb-2 text-lg font-semibold text-main">
         {{ $t('index.node_info') }}
       </div>

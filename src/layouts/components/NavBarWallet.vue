@@ -53,7 +53,7 @@ const params = computed(() => {
       <span class="ml-1 hidden md:block">
         {{ walletStore.shortAddress || 'Wallet' }}</span>
     </label>
-    <div tabindex="0" class="dropdown-content menu shadow p-2 bg-base-100 rounded w-52 md:!w-64 overflow-auto">
+    <div tabindex="0" class="dropdown-content menu shadow p-2 bg-base-10 dark:bg-[#181D27] rounded w-52 md:!w-64 overflow-auto">
       <label v-if="!walletStore?.currentAddress" for="PingConnectWallet" class="btn btn-sm btn-primary">
         <Icon icon="mdi:wallet" /><span class="ml-1 block">Connect Wallet</span>
       </label>
