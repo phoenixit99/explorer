@@ -74,6 +74,7 @@ dayjs()
 
 <template>
   <div class="bg-gray-100 dark:bg-[#171d30]">
+
     <!-- sidebar -->
     <div
       class="w-64 fixed z-50 left-0 top-0 bottom-0 overflow-auto bg-base-100 border-r border-gray-100 dark:border-gray-700"
@@ -262,7 +263,7 @@ dayjs()
           <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">
           {{ $t('module.sponsors') }}
         </div>
-        <Sponsors />
+        <!-- <Sponsors /> -->
         <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">{{ $t('module.links') }}</div>
         <a
           href="https://twitter.com/ping_pub"
@@ -303,8 +304,34 @@ dayjs()
         </a>
       </div>
     </div>
-    <div class="xl:!ml-64 px-3 pt-4">
+
+
+    <div class="xl:!ml-20 mr-20 px-3 pt-4">
       <!-- header -->
+
+      <nav class="text-white">
+    <ul class="flex space-x-6  border-gray-100 dark:border-gray-700 h-6 p-8">
+      <li><router-link to="/">Dashboard</router-link></li>
+      <li><router-link to="/validators">Validators</router-link></li>
+      <li><router-link to="/transactions">Transactions</router-link></li>
+      <li><router-link to="/assets">Assets</router-link></li>
+      <li><router-link to="/gov">Gov</router-link></li>
+      <li><router-link to="/ibc">IBC</router-link></li>
+      <li><router-link to="/contracts">Contracts</router-link></li>
+      <li>
+        <div class="relative inline-block">
+          <button @click="toggleDropdown" class="focus:outline-none">
+            Network <span v-if="dropdownVisible">▲</span><span v-else>▼</span>
+          </button>
+          <ul v-if="dropdownVisible" class="absolute mt-2 bg-gray-800 p-2 rounded shadow-lg">
+            <li class="py-1"><router-link to="/network/1">Network 1</router-link></li>
+            <li class="py-1"><router-link to="/network/2">Network 2</router-link></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
       <div
         class="flex items-center py-3 bg-base-100 mb-4 rounded px-4 sticky top-0 z-10"
       >
@@ -349,3 +376,18 @@ dayjs()
     </div>
   </div>
 </template>
+<style scoped>
+nav {
+  background-color: #242d41;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  text-decoration: underline;
+}
+</style>
